@@ -8,7 +8,7 @@ const Data: Video[] = [
     {
         id: '1',
         title: 'Where do genes come from?',
-        embedCode: '<iframe width="560" height="315" src="https://www.youtube.com/embed/1k8craCGpgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        embedCode: '<iframe width="560" height="315" src="https://www.youtube.com/embed/z9HIYjRRaDE?si=Is1BwdpyHbgBkk4Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
     },
     {
         id: '2',

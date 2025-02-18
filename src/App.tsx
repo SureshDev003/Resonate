@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Home } from './pages/Home';
-import { AIBot } from './pages/AIBot';
+import  AIBot  from './pages/AIBot';
 import { Profile } from './pages/Profile';
 import { Todo } from './pages/Todo';
 import { Game } from './pages/Game';

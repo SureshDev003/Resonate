@@ -43,19 +43,19 @@ export function Video() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {videos.map((video) => (
             <div
               key={video.id}
               className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
               onClick={() => setSelectedVideo(video)}
             >
-              <img
+              {/* <img
                 // src={video.thumbnail}
                 alt={video.title}
                 className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
+              /> */}
+              <div>
                 <div className="flex items-center gap-2">
                   {/* <VideoIcon className="h-5 w-5 text-gray-500" /> */}
                   <div

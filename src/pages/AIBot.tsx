@@ -1,37 +1,47 @@
-import { MessageSquare, Send } from 'lucide-react';
-import { useState } from 'react';
+import { useState } from "react";
+import { MessageSquare, Send } from "lucide-react";
+import { useAIResponse } from "../api/AIResponse";
+import ReactMarkdown from 'react-markdown';
 
-interface Message {
+
+
+type Message = {
   id: string;
   text: string;
   isBot: boolean;
-}
+};
 
-export function AIBot() {
+const AIBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState<string>("");
+  const { response, error, fetchAIResponse } = useAIResponse();
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = {
-      id: Date.now().toString(),
+    // Append user input to messages
+    const userMessage: Message = {
+      id: `${Date.now()}`,
       text: input,
       isBot: false,
     };
-
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage = {
-        id: (Date.now() + 1).toString(),
-        text: 'This is a simulated response. Connect to a real AI API for actual responses.',
-        isBot: true,
-      };
-      setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+    setInput("");
+
+    const result = await fetchAIResponse(userMessage.text);
+    console.log("This is the whole data:", result);
+
+    const botMessage: Message = {
+      id: `${Date.now()}`,
+      text: result || response || error || "No response from AI.",
+      isBot: true,
+    };
+
+    setMessages((prev) => [...prev, botMessage]);
+    
+
+    
   };
 
   return (
@@ -41,19 +51,19 @@ export function AIBot() {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
+              className={`flex ${
+                message.isBot ? "justify-start" : "justify-end"
+              }`}
             >
               <div
                 className={`max-w-[80%] p-3 rounded-lg ${
-                  message.isBot
-                    ? 'bg-gray-100'
-                    : 'bg-blue-600 text-white'
+                  message.isBot ? "bg-gray-100" : "bg-blue-600 text-white"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   <MessageSquare className="h-4 w-4" />
                   <span className="text-sm font-medium">
-                    {message.isBot ? 'AI Bot' : 'You'}
+                    {message.isBot ? "AI Bot" : "You"}
                   </span>
                 </div>
                 <p>{message.text}</p>
@@ -67,7 +77,7 @@ export function AIBot() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+              onKeyPress={(e) => e.key === "Enter" && sendMessage()}
               placeholder="Type your message..."
               className="flex-1 p-2 border rounded-lg"
             />
@@ -82,4 +92,6 @@ export function AIBot() {
       </div>
     </div>
   );
-}
+};
+
+export default AIBot;

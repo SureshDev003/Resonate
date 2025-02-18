@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, List } from 'lucide-react';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Plus, List } from "lucide-react";
 
 interface TodoList {
   id: string;
@@ -9,9 +9,13 @@ interface TodoList {
 }
 
 export function TodoList() {
-  const [lists, setLists] = useState<TodoList[]>([]);
+  const [lists, setLists] = useState<TodoList[]>([
+    {id: "1", title: "Learning", description: "",},
+    { id: "2", title: "Exercise", description: "" },
+    { id: "3", title: "Reading", description: "" },
+  ]);
   const [showNewListForm, setShowNewListForm] = useState(false);
-  const [newList, setNewList] = useState({ title: '', description: '' });
+  const [newList, setNewList] = useState({ title: "", description: "" });
 
   const handleCreateList = () => {
     if (newList.title.trim()) {
@@ -23,7 +27,7 @@ export function TodoList() {
           description: newList.description,
         },
       ]);
-      setNewList({ title: '', description: '' });
+      setNewList({ title: "", description: "" });
       setShowNewListForm(false);
     }
   };

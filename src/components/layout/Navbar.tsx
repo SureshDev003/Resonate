@@ -10,7 +10,7 @@ const navItems = [
 
 export function Navbar() {
   return (
-    <nav className="flex-1 bg-white border-b border-gray-200">
+    <nav className="flex-1 bg-[#4b3d8f] text-white border-b border-gray-200">
       <div className="h-full flex items-center justify-end px-4 gap-4">
         {navItems.map(({ icon: Icon, label, to }) => (
           <NavLink
@@ -18,8 +18,8 @@ export function Navbar() {
             to={to}
             className={({ isActive }) =>
               cn(
-                'flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600',
-                isActive && 'text-blue-600'
+                'flex items-center gap-2 px-3 py-2 rounded-lg  hover:text-[#b7b1d2]',
+                isActive && 'text-[#b7b1d2]'
               )
             }
           >
